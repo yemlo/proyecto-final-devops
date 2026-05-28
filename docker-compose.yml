@@ -1,0 +1,18 @@
+services:
+  web:
+    build: .
+    container_name: proyecto_web
+    ports:
+      - "3000:3000"
+    restart: always
+
+  db:
+    image: postgres:16
+    container_name: proyecto_db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: proyecto_devops
+    ports:
+      - "5432:5432"
+    restart: always
