@@ -21,6 +21,27 @@ services:
     networks:
       - app_network
 
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    configs:
+      - source: prometheus_config
+        target: /etc/prometheus/prometheus.yml
+    networks:
+      - app_network
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3001:3000"
+    networks:
+      - app_network
+
+configs:
+  prometheus_config:
+    file: ./prometheus.yml
+
 networks:
   app_network:
     driver: overlay
